@@ -6,6 +6,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer components {
+  .icon {
+    @apply flex flex-col items-center justify-center text-sm font-light;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
