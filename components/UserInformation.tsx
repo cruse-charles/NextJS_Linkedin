@@ -40,6 +40,17 @@ const UserInformation = async () => {
         </SignedOut>
         
         <hr className='w-full border-gray-200 my-5'></hr>
+
+        <div className='flex justify-between w-full px-4 text-sm'>
+            <p className='font-semibold text-gray-400'>Posts</p>
+            <p>0</p>
+        </div>
+
+        <div className='flex justify-between w-full px-4 text-sm'>
+            <p className='font-semibold text-gray-400'>Comments</p>
+            <p>0</p>
+        </div>
+
     </div>
 
   )
