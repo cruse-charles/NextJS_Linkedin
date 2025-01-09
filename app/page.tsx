@@ -1,4 +1,5 @@
 import UserInformation from "@/components/UserInformation";
+import PostForm from "@/components/PostForm";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </section>
       <section className="col-span-full md:col-span-6 xl:col-span-4  xl:max-w-lg mx-auto w-full">
         {/* Post Form */}
+        <PostForm />
         {/* Post Feed */}
       </section>
       <section className="hidden xl:inline justify-center col-span-2">
