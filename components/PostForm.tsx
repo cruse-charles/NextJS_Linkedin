@@ -11,6 +11,24 @@ const PostForm = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState<string | null>(null);
 
+    const handlePostAction = async (formData: FormData) => {
+        const formDataCopy = formData
+        ref.current?.reset();
+
+        const text = formDataCopy.get('postInput') as string;
+        if (!text.trim()) {
+            throw new Error("Post Input is required");
+        }
+
+        setPreview(null);
+
+        try {
+            await createPostAction(formDataCopy)
+        } catch (error) {
+            console.error('Error creating new post: ', error);
+        }
+    };
+
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
@@ -19,8 +37,13 @@ const PostForm = () => {
     };
 
   return (
-    <div>
-        <form ref={ref} action=''>
+    <div className="mb-2">
+        <form ref={ref} action={(formData) => {
+            // Handle form submission with server action
+            handlePostAction(formData);
+
+            // Toast notification based on promise above
+        }} className="p-3 bg-white rounded-lg border">
             <div className="flex items-center space-x-2">
                 <Avatar>
                     <AvatarImage src={user?.imageUrl} />
@@ -55,6 +78,8 @@ const PostForm = () => {
                 )}
             </div>
         </form>
+
+        <hr className="mt-2 border-gray-300"/>
     </div>
   )
 }
